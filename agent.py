@@ -12,41 +12,39 @@ model = OpenAIServerModel(
 )
 
 tools = [
-    #tools.ExtractCompaniesTool(),
     tools.CheckClientStatusTool(),
 ]
 
-news = """
-Renault and Stellantis are collaborating on new EV battery factories in France.
-This could reshape the European automotive market.
-"""
-
-prompt = f"""
-You are a financial news monitoring agent for the bank.
-Analyze the following news:
-\"\"\"{news}\"\"\"
-
-Steps:
-1. Extract any companies mentioned using the Extract Companies tool.
-2. For each company, check if it is an existing client using Check Client Status.
-3. Produce a short summary for the client manager that should be alerted.
-"""
-
-prompt = f"""
-You are a financial news monitoring agent for the bank.
-Analyze the following news:
-\"\"\"{news}\"\"\"
-
-Steps:
-1. Identify every company mentioned in the text.
-2. For each company, check if it is an existing client using Check Client Status.
-3. If it is an existing client only, write a brief summary of the news and how it will impact the client.
-"""
-
 agent = CodeAgent(tools=tools, model=model)
-response = 'ok'
-response = agent.run(prompt)
 
-print("Final output:")
-print(response)
+def run_agent(news):
+    prompt = f"""
+    You are a financial news monitoring agent for the bank.
+    Analyze the following news:
+    \"\"\"{news}\"\"\"
+
+    Steps:
+    1. Identify every company mentioned in the text.
+    2. For each company, check if it is an existing client using Check Client Status.
+    3. Create a json-like text with for all clients, the name, very concisly the impact and a brief summary.
+    """
+    return agent.run(prompt)
+
+if __name__=='__main__':
+    news = """
+    Renault and Stellantis are collaborating on new EV battery factories in France.
+    This could reshape the European automotive market.
+    """
+
+    news = """
+    Renault announced today a strategic partnership with Google Cloud to accelerate the deployment of artificial intelligence in its manufacturing operations.
+    The collaboration aims to optimize production lines through predictive maintenance and energy efficiency solutions.
+    This initiative is part of Renault’s broader strategy to digitize its industrial ecosystem and reduce operational costs by 20% over the next three years.
+    Analysts suggest this move could strengthen Renault’s competitive position in the European automotive market, especially amid increasing competition from Stellantis and Volkswagen.
+    """
+
+    response = run_agent(news)
+
+    print("Final output:")
+    print(response)
 
