@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from smolagents import CodeAgent, OpenAIServerModel
 import tools
+from prompts import format, prompt
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -18,24 +19,13 @@ tools = [
 agent = CodeAgent(tools=tools, model=model)
 
 def run_agent(news):
-    prompt = f"""
-    You are a financial news monitoring agent for the bank.
-    Analyze the following news:
-    \"\"\"{news}\"\"\"
-
-    Steps:
-    1. Identify every company mentioned in the text.
-    2. For each company, check if it is an existing client using Check Client Status.
-    3. Create a json-like text with for all clients, the name, very concisly the impact and a brief summary.
-    """
-    return agent.run(prompt)
+    input = prompt.format(
+        news=news,
+        format=format,
+    )
+    return agent.run(input)
 
 if __name__=='__main__':
-    news = """
-    Renault and Stellantis are collaborating on new EV battery factories in France.
-    This could reshape the European automotive market.
-    """
-
     news = """
     Renault announced today a strategic partnership with Google Cloud to accelerate the deployment of artificial intelligence in its manufacturing operations.
     The collaboration aims to optimize production lines through predictive maintenance and energy efficiency solutions.
@@ -47,4 +37,6 @@ if __name__=='__main__':
 
     print("Final output:")
     print(response)
+
+
 

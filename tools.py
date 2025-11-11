@@ -15,7 +15,7 @@ class CheckClientStatusTool(Tool):
     output_type = "string"
 
     def forward(self, company_name: str):
-        client_list = ["renault", "bnp paribas", "arcelormittal"]
+        client_list = ["renault", "bnp paribas", "arcelormittal", "stellantis"]
         if company_name.lower() in client_list:
             return f"{company_name} IS a client."
         return f"{company_name} is NOT a client."
