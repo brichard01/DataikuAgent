@@ -14,6 +14,7 @@ model = OpenAIServerModel(
 
 tools = [
     tools.CheckClientStatusTool(),
+    tools.CheckClientRelationsTool()
 ]
 
 agent = CodeAgent(tools=tools, model=model)
