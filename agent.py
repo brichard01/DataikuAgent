@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from smolagents import CodeAgent, OpenAIServerModel
 import tools
-from prompts import format, prompt
+from prompts import output_format, prompt
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -21,7 +21,7 @@ agent = CodeAgent(tools=tools, model=model)
 def run_agent(news):
     input = prompt.format(
         news=news,
-        format=format,
+        output_format=output_format,
     )
     return agent.run(input)
 

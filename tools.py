@@ -1,5 +1,7 @@
 from smolagents import Tool
 
+
+
 class CheckClientStatusTool(Tool):
     name = "check_client_status"
     description = """
@@ -19,27 +21,3 @@ class CheckClientStatusTool(Tool):
         if company_name.lower() in client_list:
             return f"{company_name} IS a client."
         return f"{company_name} is NOT a client."
-
-
-class GetSectorCompaniesTool(Tool):
-    name = "get_sector_companies"
-    description = """
-    Return major companies in a given sector.
-    Useful when no companies are explicitly mentioned in the news."""
-    inputs = {
-        "sector": {
-            "type": "string",
-            "description": "The sector to retrieve companies from, e.g., Energy, Automotive."
-        }
-    }
-    output_type = "string"
-
-    def forward(self, sector: str):
-        sectors = {
-            "Energy": ["TotalEnergies", "Engie"],
-            "Automotive": ["Renault", "Stellantis"]
-        }
-        comps = sectors.get(sector, [])
-        if comps:
-            return ", ".join(comps)
-        return "No known companies for this sector."
