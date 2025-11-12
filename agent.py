@@ -28,11 +28,11 @@ def run_agent(news):
 
 if __name__=='__main__':
     news = """
-    Renault announced today a strategic partnership with Google Cloud to accelerate the deployment of artificial intelligence in its manufacturing operations.
-    The collaboration aims to optimize production lines through predictive maintenance and energy efficiency solutions.
-    This initiative is part of Renault’s broader strategy to digitize its industrial ecosystem and reduce operational costs by 20% over the next three years.
-    Analysts suggest this move could strengthen Renault’s competitive position in the European automotive market, especially amid increasing competition from Stellantis and Volkswagen.
-    """
+    Renault announced a major expansion of its partnership with Google Cloud to accelerate the integration of artificial intelligence across its manufacturing and supply chain operations.
+    By leveraging Google’s advanced data analytics and machine learning platforms, Renault aims to significantly improve production efficiency, reduce energy consumption, and speed up new vehicle development cycles.
+    Industry experts view this collaboration as a key milestone in Renault’s digital transformation, giving the automaker a substantial competitive edge in the European market.
+    Meanwhile, analysts warn that competitors such as Stellantis could struggle to keep pace, as their digital capabilities and industrial data strategies remain several years behind Renault’s new AI-driven model."""
+
 
     response = run_agent(news)
 
