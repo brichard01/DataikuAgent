@@ -62,7 +62,7 @@ It outputs a concise, structured summary of business impacts in JSON format.
 ### Expected Agent Behavior
 - Identify companies: **Renault**, **Google Cloud**, **Stellantis**  
 - Recognize **Google Cloud** as a client  
-- Detect that **Stellantis** is a the owner of the client **Peugeot** 
+- Detect that **Stellantis** is the owner of the client **Peugeot** 
 - Summarize the event as an **opportunity for Renault** and a **threat for Peugeot**
 
 ---
